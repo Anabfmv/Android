@@ -15,12 +15,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/login1"
-            android:layout_marginTop="101dp"
             android:layout_alignWithParentIfMissing="false"
             android:minWidth="215dp"
-            android:layout_alignParentTop="true"
+            android:maxWidth="215dp"
+            android:layout_above="@+id/loginbutton"
             android:layout_centerHorizontal="true"
-            android:maxWidth="215dp" />
+            android:layout_marginBottom="59dp"
+            android:hint="Login" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -28,10 +29,11 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/password"
-            android:layout_below="@+id/login1"
-            android:layout_centerHorizontal="true"
             android:minWidth="200dp"
-            android:maxWidth="200dp" />
+            android:maxWidth="200dp"
+            android:layout_above="@+id/loginbutton"
+            android:layout_alignStart="@+id/login1"
+            android:hint="Password" />
 
         <Button
             android:layout_width="wrap_content"

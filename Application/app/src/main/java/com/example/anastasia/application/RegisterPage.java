@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etLogin, etEmail,etPassword;
+    EditText etLogin, etEmail,etPassword,etPassword1;
     DBHelper dbHelper;
 
     final String LOG_TAG = "myLogs";
@@ -24,6 +24,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
         etLogin = (EditText) findViewById(R.id.login1);
         etPassword = (EditText) findViewById(R.id.password1);
+        etPassword1 = (EditText) findViewById(R.id.password2);
         etEmail = (EditText) findViewById(R.id.email);
 
         dbHelper = new DBHelper(this);
@@ -36,6 +37,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         String login = etLogin.getText().toString();
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
+        String password1 = etPassword1.getText().toString();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -43,8 +45,9 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         {
                 case R.id.registerbutton1:
                     cv.put("login",login);
+                    cv.put("password1",password);
+                    cv.put("password2",password1);
                     cv.put("email",email);
-                    cv.put("password",password);
 
                     long rowID = db.insert("users",null,cv);
                     Log.d(LOG_TAG, "row inserted, ID = " + rowID);
