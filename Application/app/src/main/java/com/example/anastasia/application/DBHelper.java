@@ -3,8 +3,10 @@ package com.example.anastasia.application;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
+    final String LOG_TAG = "myLogs";
 
     public DBHelper(Context context) {
 
@@ -16,9 +18,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table users("
                    + "id integer primary key autoincrement,"
                    + "login text unique,"
-                   + "pasword text,"
-                   + "email text"
+                   + "email text,"
+                   + "password text"
                    + ");");
+        Log.d(LOG_TAG, "row inserted, ID = ");
     }
 
     @Override

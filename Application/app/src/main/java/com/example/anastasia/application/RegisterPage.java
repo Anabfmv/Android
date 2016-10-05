@@ -45,8 +45,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         {
                 case R.id.registerbutton1:
                     cv.put("login",login);
-                    cv.put("password1",password);
-                    cv.put("password2",password1);
+                    cv.put("password",password);
                     cv.put("email",email);
 
                     long rowID = db.insert("users",null,cv);
