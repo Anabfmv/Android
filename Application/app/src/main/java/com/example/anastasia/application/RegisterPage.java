@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class RegisterPage extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etLogin, etEmail,etPassword,etPassword1;
+    EditText LoginField, EmailField,PasswordField,PasswordRepeatField;
     DBHelper dbHelper;
 
     final String LOG_TAG = "myLogs";
@@ -23,10 +23,10 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        etLogin = (EditText) findViewById(R.id.login1);
-        etPassword = (EditText) findViewById(R.id.password1);
-        etPassword1 = (EditText) findViewById(R.id.password2);
-        etEmail = (EditText) findViewById(R.id.email);
+        LoginField = (EditText) findViewById(R.id.register_page_login);
+        PasswordField = (EditText) findViewById(R.id.register_page_password);
+        PasswordRepeatField = (EditText) findViewById(R.id.register_page_repeat_password);
+        EmailField = (EditText) findViewById(R.id.register_page_email);
 
         dbHelper = new DBHelper(this);
 
@@ -37,20 +37,20 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v)
     {
         ContentValues cv = new ContentValues();
-        String login = etLogin.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        String password1 = etPassword1.getText().toString();
+        String login = LoginField.getText().toString();
+        String email = EmailField.getText().toString();
+        String password = PasswordField.getText().toString();
+        String repeat_password = PasswordRepeatField.getText().toString();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
 
         switch (v.getId())
         {
-                case R.id.registerbutton1:
+                case R.id.register_page_register_button:
 
-                    String first_pass=etPassword1.getText().toString();
-                    String second_pass=etPassword.getText().toString();
+                    String first_pass=PasswordField.getText().toString();
+                    String second_pass=PasswordRepeatField.getText().toString();
                     if(!first_pass.equals(second_pass))
                     {
                         Toast.makeText(this,R.string.Password_does_not_match,Toast.LENGTH_SHORT).show();
