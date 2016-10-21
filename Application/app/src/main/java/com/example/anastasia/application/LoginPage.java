@@ -35,6 +35,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
                 if(user_id!=-1) {
                     intent = new Intent(this, MainActivity.class);
                     intent.putExtra("user_id",user_id);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
                 else Toast.makeText(this,"Invalid username/password",Toast.LENGTH_SHORT).show();

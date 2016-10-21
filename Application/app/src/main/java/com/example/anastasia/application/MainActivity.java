@@ -21,17 +21,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.menu_settings:
-                Intent intent = new Intent(this,SettingsPage.class);
+                intent = new Intent(this,SettingsPage.class);
                 startActivity(intent);
                 break;
             case R.id.menu_exit:
-                finish();
+                intent = new Intent(this,LoginPage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
