@@ -27,48 +27,32 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         PasswordField = (EditText) findViewById(R.id.register_page_password);
         PasswordRepeatField = (EditText) findViewById(R.id.register_page_repeat_password);
         EmailField = (EditText) findViewById(R.id.register_page_email);
-
         dbHelper = new DBHelper(this);
-
-
     }
 
     @Override
     public void onClick(View v)
     {
-        ContentValues cv = new ContentValues();
-        String login = LoginField.getText().toString();
-        String email = EmailField.getText().toString();
-        String password = PasswordField.getText().toString();
-        String repeat_password = PasswordRepeatField.getText().toString();
-
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-
         switch (v.getId())
         {
                 case R.id.register_page_register_button:
-
-                    String first_pass=PasswordField.getText().toString();
-                    String second_pass=PasswordRepeatField.getText().toString();
-                    if(!first_pass.equals(second_pass))
-                    {
+                    String login = LoginField.getText().toString();
+                    String email = EmailField.getText().toString();
+                    String password = PasswordField.getText().toString();
+                    String repeat_password = PasswordRepeatField.getText().toString();
+                    if(!password.equals(repeat_password)){
                         Toast.makeText(this,R.string.Password_does_not_match,Toast.LENGTH_SHORT).show();
                         return;
-
-                    }
-                    cv.put("login",login);
-                    cv.put("password",password);
-                    cv.put("email",email);
-
-                    long rowID = db.insert("users",null,cv);
-                    Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-                    if(rowID==-1){
-                        Toast.makeText(this,R.string.Register_error,Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Toast.makeText(this,R.string.Register_success,Toast.LENGTH_SHORT).show();
-                        finish();
+                        long rowID = dbHelper.AddUserToBD(login, password, email);
+                        Log.d(LOG_TAG, "row inserted, ID = " + rowID);
+                        if (rowID == -1) {
+                            Toast.makeText(this, R.string.Register_error, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, R.string.Register_success, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
                 break;
         }

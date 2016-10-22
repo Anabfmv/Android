@@ -52,15 +52,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
 
         try {
             DBHelper db = new DBHelper(this);
-            SQLiteDatabase connection = db.getReadableDatabase();
-            Cursor cursor=null;
-            /*cursor=connection.query("users",new String[]{"login","password"},
-            "login=? and password=?",new String[]{login,password},null,null,null);*/
-            cursor=connection.rawQuery("select id from users where login=? and password=?",
-                    new String[]{login,password});
-            cursor.moveToFirst();
-            int user_id=cursor.getInt(0);
-            return 1111;
+            return db.selectIDFromLoginPassword(login,password);
         }
         catch (Exception e)
         {
