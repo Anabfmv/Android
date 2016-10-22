@@ -15,11 +15,15 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
+    CurrentUserInfo user;
     ListView list_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        user = CurrentUserInfo.getInstance(this);
+        user.LoadSettingsFromDb(this);
+        user.setStatus(this,"какой то статусный статус");
         list_view=(ListView)findViewById(R.id.main_list_view);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.list_item,getModel());
         list_view.setAdapter(adapter);
@@ -54,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
+            case R.id.menu_profile:
+                intent=new Intent(this,ProfilePage.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.menu_settings:
+            case R.id.add_new_post_button:
                 Log.d("12345","click");
                 break;
         }

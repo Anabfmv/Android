@@ -45,14 +45,16 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
                         return;
                     }
                     else {
-                        long rowID = dbHelper.AddUserToBD(login, password, email);
-                        Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-                        if (rowID == -1) {
-                            Toast.makeText(this, R.string.Register_error, Toast.LENGTH_SHORT).show();
-                        } else {
+                        try {
+                            dbHelper.AddUserToBD(login, password, email);
                             Toast.makeText(this, R.string.Register_success, Toast.LENGTH_SHORT).show();
                             finish();
                         }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(this, R.string.Register_error + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        Log.d(LOG_TAG, "user registred sucess");
                     }
                 break;
         }

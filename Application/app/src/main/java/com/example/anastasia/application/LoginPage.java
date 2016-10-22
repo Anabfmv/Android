@@ -34,7 +34,7 @@ public class LoginPage extends AppCompatActivity implements View.OnClickListener
                 int user_id=auth(login,password);
                 if(user_id!=-1) {
                     intent = new Intent(this, MainActivity.class);
-                    intent.putExtra("user_id",user_id);
+                    CurrentUserInfo.InitializeID(user_id);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
