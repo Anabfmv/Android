@@ -32,14 +32,31 @@
                 android:id="@+id/settings_page_status_input"
                 android:layout_marginEnd="154dp" />
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="Обновить"
                 android:id="@+id/settings_page_status_button"
-                android:layout_column="2"
+                android:layout_column="0"
                 android:onClick="onClick"
                 android:layout_weight="1" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Редактировать текст "
+                android:id="@+id/redtext"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:onClick="onClick" />
+        </TableRow>
     </TableLayout>
+
 </LinearLayout>

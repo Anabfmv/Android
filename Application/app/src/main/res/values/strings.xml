@@ -3,4 +3,17 @@
     <string name="Password_does_not_match">Password does not match</string>
     <string name="Register_error">Register error</string>
     <string name="Register_success">Register success</string>
+
+
+
+    <string name="pref_color">Цвет</string>
+    <string name="pref_color_black">Черный цвет</string>
+    <string name="pref_color_red">Красный цвет</string>
+    <string name="pref_color_green">Зеленый цвет</string>
+    <string name="pref_color_blue">Синий цвет</string>
+    <string name="pref_size">Размер</string>
+    <string name="pref_style">Стиль</string>
+    <string name="pref_style_regular">Нормальный</string>
+    <string name="pref_style_bold">Полужирный</string>
+    <string name="pref_style_italic">Курсив</string>
 </resources>

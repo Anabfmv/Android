@@ -18,7 +18,8 @@
         <activity android:name=".RegisterPage" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SettingsPage" />
-        <activity android:name=".ProfilePage"/>
+        <activity android:name=".ProfilePage" />
+        <activity android:name=".TextSettings"></activity>
     </application>
 
 </manifest>
