@@ -18,13 +18,21 @@
             android:entryValues="@array/text_style"
             android:dialogTitle="Выберите стиль для шрифта" />
     <ListPreference
+    android:key="@string/pref_style"
+    android:title="Цвет для шрифта"
+    android:summary="Устанавливает цвет для шрифта"
+    android:defaultValue="1"
+    android:entries="@array/text_color"
+    android:entryValues="@array/text_color"
+    android:dialogTitle="Выберите цвет для шрифта" />
+    <ListPreference
         android:key="@string/pref_style"
-        android:title="Цвет для шрифта"
-        android:summary="Устанавливает цвет для шрифта"
+        android:title="Цвет фона"
+        android:summary="Устанавливает цвет для фона"
         android:defaultValue="1"
-        android:entries="@array/text_color"
-        android:entryValues="@array/text_color"
-        android:dialogTitle="Выберите цвет для шрифта" />
+        android:entries="@array/fon_color"
+        android:entryValues="@array/fon_color"
+        android:dialogTitle="Выберите цвет для фона" />
 
 
     </PreferenceScreen>

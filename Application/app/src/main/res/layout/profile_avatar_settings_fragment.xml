@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="141dp"
-        android:layout_height="141dp"
-        android:id="@+id/imageView"
-        android:src="@drawable/camera_200" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profile_status_string"
-        android:text="статус"
-        android:textSize="20sp" />
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="141dp"
+            android:layout_height="141dp"
+            android:id="@+id/settings_fragment_photo"
+            android:src="@drawable/camera_200" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/profile_status_string"
+            android:text="статус"
+            android:textSize="20sp"
+            android:layout_weight="0.88" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Сделать фото"
+        android:id="@+id/Settings_fragent_make_photo"
+        android:onClick="onClick" />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Загрузить из Альбома"
+        android:id="@+id/Settings_fragent_load_photo"
+        android:onClick="onClick" />
 
 </LinearLayout>
