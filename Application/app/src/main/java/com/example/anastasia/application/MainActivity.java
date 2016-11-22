@@ -1,22 +1,31 @@
 package com.example.anastasia.application;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
+    private List<Note> notes= new ArrayList<Note>();
     CurrentUserInfo user;
     ListView list_view;
+    ArrayAdapter<Note> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,21 +34,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         user.LoadSettingsFromDb(this);
         user.setStatus(this,"какой то статусный статус");
         list_view=(ListView)findViewById(R.id.main_list_view);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.list_item,getModel());
+        final Toast toast= Toast.makeText(this,"",Toast.LENGTH_SHORT);
+        //нет, не забыл, просто костыльная джава не даст создать Toast ниже, this там будет уже OnItemClickListener а не активити
+        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id)
+            {
+                Note note = notes.get(position);//по этому position можно находить нужную заметку в листе notes
+                toast.setText(note.header+" "+note.date);
+                toast.show();
+            }
+        });
+        adapter = new NoteAdapter(this,notes);
         list_view.setAdapter(adapter);
     }
-    private List<String> getModel() {
-        List<String> list = new ArrayList<String>();
-        list.add("Linux");
-        list.add("Windows7");
-        list.add("Suse");
-        list.add("Eclipse");
-        list.add("Ubuntu");
-        list.add("Solaris");
-        list.add("Android");
-        list.add("iPhone");
-        // Первоначальный выбор одного из элементов
-        return list;
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        notes.clear();
+        loadData(notes);
+        adapter.notifyDataSetChanged();
+    }
+    private void loadData(List<Note> note_list) {
+
+        DBHelper h=new DBHelper(this);
+        h.SelectNotesToList(note_list,String.valueOf(user.curent_id));
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mymeny, menu);
@@ -71,8 +91,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         switch (v.getId()) {
             case R.id.add_new_post_button:
-                Log.d("12345","click");
+                intent=new Intent(this,NewNotePage.class);
+                startActivity(intent);
                 break;
+        }
+    }
+
+    private class NoteAdapter extends ArrayAdapter<Note> {
+
+        public NoteAdapter(Context context,List<Note> notes) {
+            super(context, android.R.layout.simple_list_item_2, notes);
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Note note = getItem(position);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_2, null);
+            }
+            ((TextView) convertView.findViewById(android.R.id.text1)).setText(note.header);
+            ((TextView) convertView.findViewById(android.R.id.text2)).setText(note.date);
+            return convertView;
         }
     }
 }

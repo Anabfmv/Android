@@ -16,7 +16,7 @@
             android:src="@drawable/camera_200" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/profile_status_string"
             android:text="статус"
@@ -24,13 +24,13 @@
     </LinearLayout>
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Сделать фото"
         android:id="@+id/Settings_fragent_make_photo" />
 
     <Button
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Загрузить из Альбома"
         android:id="@+id/Settings_fragent_load_photo" />

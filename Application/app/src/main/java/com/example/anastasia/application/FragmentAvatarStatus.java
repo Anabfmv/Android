@@ -1,5 +1,6 @@
 package com.example.anastasia.application;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,7 +34,7 @@ public class FragmentAvatarStatus extends Fragment{
         View view = inflater.inflate(R.layout.profile_avatar_settings_fragment, null);
         TextView status_bar = (TextView)view.findViewById(R.id.profile_status_string);
         status_bar.setText(CurrentUserInfo.getInstance(getActivity()).status);
-        ivPhoto = (ImageView) view.findViewById(R.id.settings_fragment_photo);
+
         make_photo_btn = (Button)view.findViewById(R.id.Settings_fragent_make_photo);
         load_photo_bth = (Button)view.findViewById(R.id.Settings_fragent_load_photo);
         return view;

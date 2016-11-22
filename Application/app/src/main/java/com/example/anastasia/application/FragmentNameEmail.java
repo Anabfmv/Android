@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * Created by Admin on 22.10.2016.
- */
 public class FragmentNameEmail  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
