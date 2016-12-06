@@ -13,13 +13,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/new_note_header_textbox" />
+        android:id="@+id/new_note_header_textbox"
+        android:textIsSelectable="false" />
 
     <EditText
-        android:id="@+id/new_note_text_textbox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top|left"
-        android:inputType="textMultiLine" />
+        android:id="@+id/new_note_text_textbox"
+        android:textIsSelectable="false"
+        android:inputType="textMultiLine"
+        android:gravity="top|left" />
 
 </LinearLayout>

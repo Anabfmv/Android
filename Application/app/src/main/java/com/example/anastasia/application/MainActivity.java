@@ -1,11 +1,14 @@
 package com.example.anastasia.application;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Note> notes= new ArrayList<Note>();
     CurrentUserInfo user;
     ListView list_view;
+    final Context activity=this;
     ArrayAdapter<Note> adapter;
+    Note current_node;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id)
             {
-                Note note = notes.get(position);//по этому position можно находить нужную заметку в листе notes
-                toast.setText(note.header+" "+note.date);
-                toast.show();
+                Note note = notes.get(position);
+                Intent intent=new Intent(activity,NewNotePage.class);
+                intent.putExtra(NewNotePage.CAN_EDIT,false);
+                intent.putExtra(NewNotePage.MESSAGE_ID, note.id);
+                intent.putExtra(NewNotePage.MESSAGE_TEXT,note.text);
+                intent.putExtra(NewNotePage.MESSAGE_HEADER, note.header);
+                startActivity(intent);
             }
         });
+        registerForContextMenu(list_view);
         adapter = new NoteAdapter(this,notes);
         list_view.setAdapter(adapter);
     }
@@ -96,7 +106,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == R.id.main_list_view) {
+            ListView lv = (ListView) v;
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            Note obj = (Note) lv.getItemAtPosition(acmi.position);
+            getMenuInflater().inflate(R.menu.long_tap_meny,menu);
+        }
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+                .getMenuInfo();
+        Note note = notes.get(info.position);
+        current_node=note;
+        switch (item.getItemId()) {
+            case R.id.menu_edit:
+                Intent intent=new Intent(activity,NewNotePage.class);
+                intent.putExtra(NewNotePage.CAN_EDIT,true);
+                intent.putExtra(NewNotePage.MESSAGE_ID, note.id);
+                intent.putExtra(NewNotePage.MESSAGE_TEXT,note.text);
+                intent.putExtra(NewNotePage.MESSAGE_HEADER, note.header);
+                startActivity(intent);
+                return true;
+            case R.id.menu_delete:
+                final Toast toast= Toast.makeText(this,note.header + " deleted",Toast.LENGTH_SHORT);
+                ConfirmDelete(this,"Confirm delete operation",
+                        "realy delete "+note.header+" note?",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { // OK
+                                DBHelper h=new DBHelper(activity);
+                                h.DropNoteFromID(String.valueOf(current_node.id));
+                                toast.show();
+                                onResume();
+                            }
+                        }, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) { // Cancel
 
+                            }
+                        });
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+    public static void ConfirmDelete(final Activity activity, String title, String msg,
+                           DialogInterface.OnClickListener okListener,
+                           DialogInterface.OnClickListener cancelListener) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(msg);
+        alertDialog.setPositiveButton(R.string.Delete, okListener);
+        alertDialog.setNegativeButton(R.string.Cancel, cancelListener);
+        alertDialog.show();
+    }
     private class NoteAdapter extends ArrayAdapter<Note> {
 
         public NoteAdapter(Context context,List<Note> notes) {

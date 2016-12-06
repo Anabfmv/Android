@@ -60,19 +60,38 @@ public class DBHelper extends SQLiteOpenHelper {
         data.put("raw_text", text);
         data.put("private_flag", true);//temp stub
         long rowID = db.insert("users_notes", null, data);
-        if(rowID==-1) throw new RuntimeException("databace users insert error");
+        if(rowID==-1) throw new RuntimeException("databace users_notes insert error");
+    }
+    public void UpdateNote(String header, String text, String note_id)
+    {
+        ContentValues data = new ContentValues();
+        SQLiteDatabase db = getWritableDatabase();
+        String curStringDate = new SimpleDateFormat("dd.MM.yyyy/kk:mm:ss").format(System.currentTimeMillis());
+        data.put("id", note_id);
+        data.put("date", curStringDate);
+        data.put("header", header);
+        data.put("raw_text", text);
+        data.put("private_flag", true);//temp stub
+        long rowID = db.update("users_notes", data,"id=?",new String[]{note_id});
+        if(rowID==-1) throw new RuntimeException("databace users_notes update error");
     }
     public void SelectNotesToList(List<Note> note_list,String user_id)
     {
         SQLiteDatabase connection = getReadableDatabase();
-        Cursor cursor=connection.rawQuery("select header,raw_text,date from users_notes where user_id=?",
+        Cursor cursor=connection.rawQuery("select header,raw_text,date,id from users_notes where user_id=?",
                 new String[]{user_id});
         Note note;
         while (cursor.moveToNext())
         {
-            note=new Note(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+            note=new Note(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getInt(3));
             note_list.add(note);
         }
+    }
+    public void DropNoteFromID(String id)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        long rowID = db.delete("users_notes", "id=?",new String[]{id});
+        if(rowID==-1) throw new RuntimeException("databace users_notes update error");
     }
     public int selectIDFromLoginPassword(String login, String password)
     {

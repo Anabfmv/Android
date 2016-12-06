@@ -15,4 +15,7 @@
     <string name="pref_style_regular">Нормальный</string>
     <string name="pref_style_bold">Полужирный</string>
     <string name="pref_style_italic">Курсив</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Delete">Delete</string>
+    <string name="delete_confirm">Confirm delete operation</string>
 </resources>
