@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SettingsPage extends AppCompatActivity implements View.OnClickListener  {
 
@@ -21,9 +22,13 @@ public class SettingsPage extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View view) {
-        user.setStatus(this,status_input.getText().toString());
         Intent intent;
         switch (view.getId()) {
+            case R.id.settings_page_status_button:
+                String text=status_input.getText().toString();
+                user.setStatus(this,text);
+                Toast.makeText(this,"new status: "+text,Toast.LENGTH_SHORT).show();
+            break;
             case R.id.redtext:
                 intent = new Intent(this,TextSettings.class);
                 startActivity(intent);
