@@ -56,4 +56,24 @@
         android:onClick="onClick"
         android:layout_gravity="center_horizontal" />
 
+    <Button
+        android:id="@+id/settings_font_style_button"
+        android:layout_column="0"
+        android:layout_span="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/font_style" />
+
+    <Button
+        android:id="@+id/settings_font_size_button"
+        android:layout_column="0"
+        android:layout_span="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/font_size" />
+
 </LinearLayout>

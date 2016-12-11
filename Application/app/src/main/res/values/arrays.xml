@@ -9,11 +9,12 @@
     </string-array>
     <string-array name="colors">
     <item>Черный</item>
-    <item>Красный</item>
+    <item>Белый</item>
     <item>Песочный</item>
     <item>Зеленый</item>
     <item>Синий</item>
     <item>Голубой</item>
+    <item>Красный</item>
 </string-array>
 
 </resources>

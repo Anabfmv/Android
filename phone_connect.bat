@@ -1,0 +1,1 @@
+e:\androidStudio\android_IDE\SDK\platform-tools\adb connect 192.168.0.11

@@ -1,11 +1,14 @@
 package com.example.anastasia.application;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class NewNotePage extends AppCompatActivity {
@@ -32,9 +35,52 @@ public class NewNotePage extends AppCompatActivity {
             HeaderTextbox.setTextIsSelectable(true);
             TextTextbox.setTextIsSelectable(true);
         }
+        SetTextboxConfigs(TextTextbox);
+        SetTextboxConfigs(HeaderTextbox);
+        LinearLayout fon = (LinearLayout)findViewById(R.id.new_note_layout);
+        if(user.background_color!=null) fon.setBackgroundColor(getColorFromResurse(user.background_color));
         TextTextbox.setText(getIntent().getStringExtra(MESSAGE_TEXT));
         HeaderTextbox.setText(getIntent().getStringExtra(MESSAGE_HEADER));
         message_id = getIntent().getIntExtra(MESSAGE_ID,-1);
+    }
+    private void SetTextboxConfigs(EditText textbox)
+    {
+        int value;
+        if(user.font_color!=null) {
+            value=getColorFromResurse(user.font_color);
+            textbox.setTextColor(value);
+        }
+        if(user.font_size!=null)
+        {
+            textbox.setTextSize(Float.parseFloat(user.font_size));
+        }
+        if(user.font_style!=null)
+        {
+            switch (user.font_style)
+            {
+                case "Обычный": textbox.setTypeface(null,Typeface.NORMAL);break;
+                case "Полужирный": textbox.setTypeface(null,Typeface.BOLD);break;
+                case "Курсив": textbox.setTypeface(null,Typeface.ITALIC);break;
+                case "Полужирный+Курсив": textbox.setTypeface(null,Typeface.BOLD_ITALIC);break;
+            }
+        }
+    }
+    private int getColorFromResurse(String color)
+    {
+        int int_color;
+        Resources res = getResources();
+        switch (color)
+        {
+            case "Черный": int_color = res.getColor(R.color.Чёрный);break;
+            case "Белый": int_color = res.getColor(R.color.Белый);break;
+            case "Красный": int_color = res.getColor(R.color.Красный);break;
+            case "Песочный": int_color = res.getColor(R.color.Песочный);break;
+            case "Зеленый": int_color = res.getColor(R.color.Зеленый);break;
+            case "Синий": int_color = res.getColor(R.color.Синий);break;
+            case "Голубой": int_color = res.getColor(R.color.Голубой);break;
+            default: int_color = -1;break;
+        }
+        return int_color;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

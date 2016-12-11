@@ -17,4 +17,6 @@
     <string name="fon_color_string">Цвет фона</string>
     <string name="font_color">Цвет шрифта</string>
     <string name="refresh">Обновить</string>
+    <string name="font_style">Стиль текста</string>
+    <string name="font_size">Размер шрифта</string>
 </resources>

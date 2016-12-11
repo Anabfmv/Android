@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE users_notes (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER REFERENCES users (id),"+
             "date TEXT, header TEXT, raw_text TEXT, private_flag BOOLEAN);";
     private final String create_settings_table=
-            "CREATE TABLE settings (user_id INTEGER REFERENCES users (id) PRIMARY KEY, status TEXT,font_size TEXT,"+
+            "CREATE TABLE settings (user_id INTEGER REFERENCES users (id) PRIMARY KEY, status TEXT,font_style TEXT, font_size TEXT,"+
             "font_color TEXT, background_color TEXT, email TEXT, showAvatarBlock BOOLEAN, showEmailBlock BOOLEAN, avatar BLOB);";
     @Override
     public void onCreate(SQLiteDatabase db)

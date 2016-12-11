@@ -13,7 +13,7 @@ public class CurrentUserInfo {
    private static CurrentUserInfo userInfo = null;
     public int showAvatarBlock, showEmailBlock;
     Image avatar;
-    public String status, font_size, font_color, background_color, email, login;
+    public String status, font_size, font_style, font_color, background_color, email, login;
     static int curent_id;
 
     public static void InitializeID(int id){curent_id=id;}
@@ -26,8 +26,12 @@ public class CurrentUserInfo {
     public void LoadSettingsFromDb(Context context) {
         DBHelper db = new DBHelper(context);
         SQLiteDatabase base=db.getReadableDatabase();
-        Cursor cursor=base.rawQuery("select showAvatarBlock,showEmailBlock,status,font_size,font_color,background_color," +
-                "email from settings where user_id=?",
+        /*Cursor cursor=base.query("settings",
+                new String[]{"showAvatarBlock","showEmailBlock","status","font_size","font_color","background_color","font_style"},
+                "id=?",new String[]{String.valueOf(curent_id)},null,null,null);*/
+        Cursor cursor=base.rawQuery(
+                "select showAvatarBlock,showEmailBlock,status,font_size,font_color,background_color,font_style,email " +
+                "from settings where user_id=?",
                 new String[]{String.valueOf(curent_id)});
         cursor.moveToFirst();
         showAvatarBlock=cursor.getInt(0);
@@ -36,7 +40,8 @@ public class CurrentUserInfo {
         font_size=cursor.getString(3);
         font_color=cursor.getString(4);
         background_color=cursor.getString(5);
-        email=cursor.getString(6);
+        font_style=cursor.getString(6);
+        email=cursor.getString(7);
         cursor.close();
         cursor=base.rawQuery("select login from users where id=?",
                 new String[]{String.valueOf(curent_id)});
@@ -55,6 +60,10 @@ public class CurrentUserInfo {
         setArg(context,"font_size='"+new_font_size+"'");
         font_size=new_font_size;
     }
+    public void setFontStyle( Context context, String new_font_style) {
+        setArg(context,"font_style='"+new_font_style+"'");
+        font_style=new_font_style;
+    }
     public void setFontColor( Context context, String new_font_color) {
         setArg(context,"font_color='"+new_font_color+"'");
         font_color=new_font_color;
@@ -72,10 +81,10 @@ public class CurrentUserInfo {
         showEmailBlock=new_show_email_block;
     }
 
-    private void setArg(Context context, String sql) {
+    private void setArg(Context context, String attribute) {
         DBHelper db = new DBHelper(context);
         SQLiteDatabase base = db.getWritableDatabase();
-        String querry="update settings set " + sql + " where user_id = " + curent_id;
+        String querry="update settings set " + attribute + " where user_id = " + curent_id;
         base.execSQL(querry);
     }
 }

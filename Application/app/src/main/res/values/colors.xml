@@ -3,5 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="Чёрный">#000000</color>
+    <color name="Белый">#FFFFFF</color>
+    <color name="Красный">#FF0000</color>
+    <color name="Песочный">#F5DA81</color>
+    <color name="Зеленый">#088A08</color>
+    <color name="Синий">#0404B4</color>
+    <color name="Голубой">#01A9DB</color>
 </resources>
