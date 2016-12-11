@@ -7,17 +7,13 @@
         <item>Курсив</item>
         <item>Полужирный+Курсив</item>
     </string-array>
-    <string-array name="text_color">
+    <string-array name="colors">
     <item>Черный</item>
     <item>Красный</item>
+    <item>Песочный</item>
     <item>Зеленый</item>
     <item>Синий</item>
+    <item>Голубой</item>
 </string-array>
-    <string-array name="fon_color">
-        <item>Черный</item>
-        <item>Песочный</item>
-        <item>Зеленый</item>
-        <item>Голубой</item>
-    </string-array>
 
 </resources>

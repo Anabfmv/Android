@@ -6,10 +6,6 @@
 
 
     <string name="pref_color">Цвет</string>
-    <string name="pref_color_black">Черный цвет</string>
-    <string name="pref_color_red">Красный цвет</string>
-    <string name="pref_color_green">Зеленый цвет</string>
-    <string name="pref_color_blue">Синий цвет</string>
     <string name="pref_size">Размер</string>
     <string name="pref_style">Стиль</string>
     <string name="pref_style_regular">Нормальный</string>
@@ -18,4 +14,7 @@
     <string name="Cancel">Cancel</string>
     <string name="Delete">Delete</string>
     <string name="delete_confirm">Confirm delete operation</string>
+    <string name="fon_color_string">Цвет фона</string>
+    <string name="font_color">Цвет шрифта</string>
+    <string name="refresh">Обновить</string>
 </resources>

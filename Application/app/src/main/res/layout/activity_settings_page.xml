@@ -8,55 +8,52 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.anastasia.application.SettingsPage"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <TableLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TableRow
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="статус:"
+            android:id="@+id/settings_page_status_text" />
+
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="3">
+            android:layout_height="wrap_content"
+            android:id="@+id/settings_page_status_input"
+            android:layout_column="2" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="статус:"
-                android:id="@+id/settings_page_status_text"
-                android:layout_weight="1" />
+    <Button
+        android:text="@string/refresh"
+        android:id="@+id/settings_page_status_button"
+        android:layout_column="0"
+        android:onClick="onClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="3" />
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/settings_page_status_input"
-                android:layout_marginEnd="154dp" />
+    <Button
+        android:text="@string/fon_color_string"
+        android:id="@+id/settings_fon_color_button"
+        android:layout_column="0"
+        android:layout_span="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="Обновить"
-                android:id="@+id/settings_page_status_button"
-                android:layout_column="0"
-                android:onClick="onClick"
-                android:layout_weight="1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:text="Редактировать текст "
-                android:id="@+id/redtext"
-                android:layout_column="0"
-                android:layout_weight="1"
-                android:onClick="onClick" />
-        </TableRow>
-    </TableLayout>
+    <Button
+        android:text="@string/font_color"
+        android:id="@+id/settings_font_color_button"
+        android:layout_column="0"
+        android:layout_span="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
