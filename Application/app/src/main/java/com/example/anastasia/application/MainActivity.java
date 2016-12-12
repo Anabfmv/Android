@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         user = CurrentUserInfo.getInstance(this);
         user.LoadSettingsFromDb(this);
-        user.setStatus(this,"какой то статусный статус");
         list_view=(ListView)findViewById(R.id.main_list_view);
         final Toast toast= Toast.makeText(this,"",Toast.LENGTH_SHORT);
         //нет, не забыл, просто костыльная джава не даст создать Toast ниже, this там будет уже OnItemClickListener а не активити

@@ -1,5 +1,6 @@
 package com.example.anastasia.application;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -53,38 +54,42 @@ public class CurrentUserInfo {
     private CurrentUserInfo(){}
 
     public void setStatus( Context context, String new_status) {
-        setArg(context,"status='"+new_status+"'");
+        setArg(context,"status",String.valueOf(new_status));
         status=new_status;
     }
     public void setFontSize( Context context, String new_font_size) {
-        setArg(context,"font_size='"+new_font_size+"'");
+        setArg(context,"font_size",String.valueOf(new_font_size));
         font_size=new_font_size;
     }
     public void setFontStyle( Context context, String new_font_style) {
-        setArg(context,"font_style='"+new_font_style+"'");
+        setArg(context,"font_style",String.valueOf(new_font_style));
         font_style=new_font_style;
     }
     public void setFontColor( Context context, String new_font_color) {
-        setArg(context,"font_color='"+new_font_color+"'");
+        setArg(context,"font_color",String.valueOf(new_font_color));
         font_color=new_font_color;
     }
     public void setBackgroundColor( Context context, String new_background_color) {
-        setArg(context,"background_color='"+new_background_color+"'");
+        setArg(context,"background_color",String.valueOf(new_background_color));
         background_color=new_background_color;
     }
     public void setShowAvatarBlock( Context context, int new_show_avatar_block) {
-        setArg(context,"ShowAvatarBlock="+new_show_avatar_block);
+        setArg(context,"ShowAvatarBlock",String.valueOf(new_show_avatar_block));
         showAvatarBlock=new_show_avatar_block;
     }
     public void setshowEmailBlock( Context context, int new_show_email_block) {
-        setArg(context,"showEmailBlock="+new_show_email_block);
+        setArg(context,"showEmailBlock",String.valueOf(new_show_email_block));
         showEmailBlock=new_show_email_block;
     }
 
-    private void setArg(Context context, String attribute) {
+    private void setArg(Context context, String row, String value) {
         DBHelper db = new DBHelper(context);
         SQLiteDatabase base = db.getWritableDatabase();
-        String querry="update settings set " + attribute + " where user_id = " + curent_id;
-        base.execSQL(querry);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(row,value);
+        int rowID = base.update("settings",contentValues,"user_id=?",new String[]{String.valueOf(curent_id)});
+       // String querry="update settings set " + attribute + " where user_id = " + curent_id;
+        if(rowID==-1) throw new RuntimeException("databace users insert error");
+        //base.execSQL(querry);
     }
 }
