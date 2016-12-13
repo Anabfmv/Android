@@ -8,12 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.anastasia.application.TextSettings"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#ebfafb">
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fon_color_string"
-        android:id="@+id/settings_font_color_button" />
+        android:id="@+id/settings_font_color_button"
+        android:background="@android:drawable/editbox_dropdown_light_frame" />
 </LinearLayout>

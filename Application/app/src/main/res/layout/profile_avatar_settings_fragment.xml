@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ebfafb">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -27,12 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Сделать фото"
-        android:id="@+id/Settings_fragent_make_photo" />
+        android:id="@+id/Settings_fragent_make_photo"
+        android:background="@android:drawable/editbox_dropdown_light_frame" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Загрузить из Альбома"
-        android:id="@+id/Settings_fragent_load_photo" />
+        android:id="@+id/Settings_fragent_load_photo"
+        android:background="@android:drawable/editbox_dropdown_light_frame" />
 
 </LinearLayout>

@@ -9,7 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.anastasia.application.ProfilePage"
     android:orientation="vertical"
-    android:weightSum="3">
+    android:weightSum="3"
+    android:background="#ebfafb">
 
     <LinearLayout
         android:orientation="horizontal"

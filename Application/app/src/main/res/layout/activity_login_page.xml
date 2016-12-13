@@ -7,12 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.anastasia.application.LoginPage">
+    tools:context="com.example.anastasia.application.LoginPage"
+    android:background="#ebfafb">
 
 
 
         <EditText
-            android:text="test"
+            android:text="test1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/login_page_login"
@@ -25,7 +26,7 @@
             android:hint="Login" />
 
         <EditText
-            android:text="test"
+            android:text="test1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -44,16 +45,18 @@
             android:id="@+id/login_page_loginbutton"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:background="@android:drawable/editbox_dropdown_light_frame" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
             android:id="@+id/login_page_registerbutton"
+            android:onClick="onClick"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:onClick="onClick" />
+            android:background="@android:drawable/editbox_dropdown_light_frame" />
 
 
 </RelativeLayout>

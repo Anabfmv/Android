@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.anastasia.application.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ebfafb">
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -16,7 +17,8 @@
         android:id="@+id/add_new_post_button"
         android:layout_gravity="right"
         android:src="@android:drawable/ic_input_add"
-        android:onClick="onClick" />
+        android:onClick="onClick"
+        android:background="@android:drawable/editbox_dropdown_light_frame" />
 
     <ListView
         android:layout_width="wrap_content"
